@@ -17,3 +17,7 @@ endif ()
 
 file(GLOB src "src/*")
 add_executable(language_grammar ${src})
+
+if (OOP_APPROACH)
+    target_compile_definitions(language_grammar PRIVATE OOP_APPROACH)
+endif ()

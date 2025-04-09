@@ -4,11 +4,14 @@ class Visitor;
 
 class LanguageCharacter
 {
+#ifdef OOP_APPROACH
+
 public:
 	virtual ~LanguageCharacter() = default;
 
 public:
 	virtual void accept(Visitor& visitor) const = 0;
+#endif
 };
 
 class NonTerminalCharacter : public LanguageCharacter
@@ -22,13 +25,15 @@ private:
 public:
 	[[nodiscard]] char getChar() const { return _data; }
 
+#ifdef OOP_APPROACH
 	void accept(Visitor& visitor) const override;
+#endif
 };
 
 class TokenCharacter : public LanguageCharacter
 {
 public:
-	explicit TokenCharacter(wchar_t d) : _data(d) {}
+	explicit TokenCharacter(char d) : _data(static_cast<wchar_t>(d)) {}
 
 private:
 	const wchar_t _data;
@@ -36,5 +41,12 @@ private:
 public:
 	[[nodiscard]] wchar_t getChar() const { return _data; }
 
+#ifdef OOP_APPROACH
 	void accept(Visitor& visitor) const override;
+#endif
 };
+
+#ifndef OOP_APPROACH
+#include <variant>
+using CharacterVariant = std::variant<NonTerminalCharacter, TokenCharacter>;
+#endif

@@ -1,24 +1,40 @@
 {
-	"version": 6,
-	"configurePresets": [
-	  {
-		"name": "debug",
-		"displayName": "Ninja Clang-CL Debug",
-		"generator": "Ninja",
-		"binaryDir": "${sourceDir}/_build/${presetName}",
-		"cacheVariables": {
-		  "CMAKE_BUILD_TYPE": "Debug",
-		  "CMAKE_C_COMPILER": "clang-cl",
-		  "CMAKE_CXX_COMPILER": "clang-cl"
-		}
-	  },
-	  {
-		"name": "release",
-		"inherits": "debug",
-		"displayName": "Ninja Clang-CL Release",
-		"cacheVariables": {
-		  "CMAKE_BUILD_TYPE": "Release"
-		}
-	  }
-	]
+  "version": 6,
+  "configurePresets": [
+    {
+      "name": "debug",
+      "displayName": "Ninja Clang-CL Debug",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/_build/${presetName}",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_C_COMPILER": "clang-cl",
+        "CMAKE_CXX_COMPILER": "clang-cl"
+      }
+    },
+    {
+      "name": "debug-oop",
+      "displayName": "Ninja Clang-CL Debug (OOP approach)",
+      "inherits": "debug",
+      "cacheVariables": {
+        "OOP_APPROACH": "1"
+      }
+    },
+    {
+      "name": "release",
+      "inherits": "debug",
+      "displayName": "Ninja Clang-CL Release",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release"
+      }
+    },
+    {
+      "name": "release-oop",
+      "inherits": "debug-oop",
+      "displayName": "Ninja Clang-CL Release (OOP approach)",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release"
+      }
+    }
+  ]
 }
